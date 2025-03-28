@@ -28,7 +28,7 @@ public class BlockData {
                 .append(previousHash)
                 .append(nonce);
 
-        // Add all transaction data
+        
         for (TransactionRecord transaction : transactions) {
             data.append(transaction.getFromAddress())
                     .append(transaction.getToAddress())
@@ -39,7 +39,7 @@ public class BlockData {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(data.toString().getBytes(StandardCharsets.UTF_8));
 
-            // Convert byte array to hexadecimal string
+            
             StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
