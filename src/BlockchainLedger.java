@@ -17,7 +17,7 @@ public class BlockchainLedger {
         this.difficulty = 4;
         this.miningReward = 100;
 
-        // Create genesis block
+        
         createGenesisBlock();
     }
 
@@ -44,7 +44,7 @@ public class BlockchainLedger {
         System.out.println("Block mined successfully!");
         chain.add(block);
 
-        // Reset the pending transactions and give miner their reward
+        
         pendingTransactions = new ArrayList<>();
         pendingTransactions.add(new TransactionRecord("System", minerAddress, miningReward));
     }
@@ -72,17 +72,17 @@ public class BlockchainLedger {
             BlockData currentBlock = chain.get(i);
             BlockData previousBlock = chain.get(i - 1);
 
-            // Verify the current block's hash
+            
             if (!currentBlock.getHash().equals(currentBlock.calculateHash())) {
                 return false;
             }
 
-            // Verify the previous hash reference
+            
             if (!currentBlock.getPreviousHash().equals(previousBlock.getHash())) {
                 return false;
             }
 
-            // Verify the nonce produces a valid hash (proof of work)
+            
             String hashTarget = new String(new char[difficulty]).replace('\0', '0');
             if (!currentBlock.getHash().substring(0, difficulty).equals(hashTarget)) {
                 return false;
